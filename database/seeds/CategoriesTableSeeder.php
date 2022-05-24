@@ -25,7 +25,7 @@ class CategoryTableSeeder extends Seeder
         for ($i=0; $i < count($categories); $i++) { 
             $newCategory = new Category();
             $newCategory->name = $categories[$i];
-            $newCategory->color = $faker->unique->hexColor();
+            $newCategory->color = $faker->unique()->hexColor();
             $newCategory->save();
         }
     }
