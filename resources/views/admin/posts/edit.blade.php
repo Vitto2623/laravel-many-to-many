@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row d-flex justify-content-center align-items-center p-5">
 
-                <form class="row g-3" action="{{route('admin.posts.update' [ $post->id])}}" method="post">
+                <form class="row g-3" action="{{route('admin.posts.update', [ $post->id])}}" method="post">
                     @csrf
 
                     @method('PUT')
