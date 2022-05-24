@@ -12,24 +12,37 @@
 
                     @method('PUT')
 
-                    <div class="col-md-6">
+                    <div class="col-12 text-center">
                         <label for="title" class="form-label">Titolo Post</label>
-                        <input type="text" class="form-control" name="title" id="title" value=>
+                        <input type="text" class="form-control" name="title" id="title" value="{{$post->title}}">
                     </div>
-                    <div class="col-md-6">
-                        <label for="author" class="form-label">Aggiungi autore:</label>
-                        <textarea class="form-control" name="author" id="description" cols="500" rows="10" placeholder="...."></textarea>
+                    <div class="col-12 d-flex flex-column">
+                        <label for="content" class="form-label">Aggiugni Contenuto Post</label>
+                        <textarea name="content" id="content" cols="30" rows="10" >
+                            {{$post->content}}"
+                        </textarea>
                     </div>
-                    <div class="col-12">
-                        <label for="content" class="form-label">Aggiugni Immagine Fumetto</label>
-                        <input type="text" class="form-control" name="content" id="thumb" placeholder="aggiungi contenuto post">
+
+                    <div class="col-6">
+                        <select style="border: 2px solid blue" name="category">
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}"
+                                @if ($post->categories[0]->id === $category->id)
+                                @endif selected>    
+                                    {{$category->name}}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+
+
                     <div class="col-12 d-flex justify-content-center align-items-center flex-column">
                         <label for="image_url" class="form-label">Aggiungi immagine</label>
-                        <input type="text" class="form-control w-25" name="price" id="price" placeholder="inserisci un'immagine">
+                        <input type="text" class="form-control w-25" name="image_url" id="price" placeholder="inserisci un'immagine" value="{{$post->image_url}}">
                     </div>
+
                     <div class="col-12  text-center mt-5">
-                        <button type="submit" class="btn btn-primary">Aggiungi post</button>
+                        <button type="submit" class="btn btn-primary">Modifica il post</button>
                     </div>
                 </form>
                 

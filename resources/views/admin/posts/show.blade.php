@@ -12,10 +12,15 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{$post->title}}</h5>
+                                <h5 class="card-title">{{Auth::user()['name']}}</h5>
                                 <h5 class="card-title">{{$post->author}}</h5>
                                 <p class="card-text overflow-auto" style="height: 120px">{{$post->content}}</p>
                                 <p class="card-text"><small class="text-muted">{{$post->created_at}}</small></p>
+                                <p class="card-text">
+                                    @foreach ($post->categories as $category)
+                                        <span class="badge rounded-pill" style="background-color: {{$category->color}}">{{$category->name}}</span>
+                                    @endforeach
+                                </p>
                             </div>
                         </div>
                     </div>

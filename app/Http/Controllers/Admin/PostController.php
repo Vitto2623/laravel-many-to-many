@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,9 +27,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -41,14 +43,13 @@ class PostController extends Controller
     {
         $data = $request->all();
         $post = new Post();
-
         $post->title = $data['title'];
-        $post->author = $data['author'];
         $post->content = $data['content'];
         $post->image_url = $data['image_url'];
         $post->save();
+        $post->categories()->sync($data['category']);
 
-        return redirect()->route('post.show', $post);
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -70,9 +71,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
-        
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -82,9 +82,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $post->image_url = $data['image_url'];
+        $post->categories()->sync($data['category']);
+        $post->save();
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -93,8 +99,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 }

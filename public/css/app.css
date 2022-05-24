@@ -12188,3 +12188,8 @@ fieldset:disabled .btn {
   font-size: 1.2rem;
 }
 
+.btn-special {
+  background-color: yellow;
+  border: 2px solid yellow;
+}
+

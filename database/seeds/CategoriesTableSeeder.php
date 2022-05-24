@@ -4,7 +4,7 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class CategoryTableSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -30,3 +30,4 @@ class CategoryTableSeeder extends Seeder
         }
     }
 }
+

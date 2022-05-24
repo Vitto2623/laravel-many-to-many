@@ -14,17 +14,26 @@
                         <input type="text" class="form-control" name="title" id="title">
                     </div>
                     <div class="col-md-6">
-                        <label for="author" class="form-label">Aggiungi autore:</label>
-                        <textarea class="form-control" name="author" id="description" cols="500" rows="10" placeholder="...."></textarea>
+                        <label for="content" class="form-label">Aggiungi contenuto:</label>
+                        <textarea class="form-control" name="content" id="description" cols="500" rows="10" placeholder="...."></textarea>
                     </div>
-                    <div class="col-12">
-                        <label for="content" class="form-label">Aggiugni Immagine Fumetto</label>
-                        <input type="text" class="form-control" name="content" id="thumb" placeholder="aggiungi contenuto post">
-                    </div>
+
                     <div class="col-12 d-flex justify-content-center align-items-center flex-column">
                         <label for="image_url" class="form-label">Aggiungi immagine</label>
-                        <input type="text" class="form-control w-25" name="price" id="price" placeholder="inserisci un'immagine">
+                        <input type="text" class="form-control w-25" name="image_url" id="price" placeholder="inserisci un'immagine">
                     </div>
+
+                        <div class="col-6">
+                            <label for="category">Seleziona una categoria per il post:</label>
+                            <select style="border: 2px solid blue" name="category">
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">    
+                                        {{$category->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>    
+                    
                     <div class="col-12  text-center mt-5">
                         <button type="submit" class="btn btn-primary">Aggiungi post</button>
                     </div>

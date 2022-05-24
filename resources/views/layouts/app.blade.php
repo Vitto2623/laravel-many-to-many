@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel Auth</title>
+    <title>Laravel BoolPress</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand special" style="color:blue"  href="{{ route('home') }}">
-                    Laravel Auth
+                    Laravel BoolPress
                 </a>
 
                 <div class="" id="navbarSupportedContent">
